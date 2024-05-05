@@ -5,21 +5,40 @@
 using namespace std;
 
 class Car {
-public:
+private:
     string brand;
     string model;
     string year;
     string color;
     string speed;
 
+public:
     Car() : brand(""), model(""), year(""), color(""), speed("") {}
 
-    
-    Car(string _brand, string _model, string _year, string _color, string _speed)
+    Car(const string& _brand, const string& _model, const string& _year, const string& _color, const string& _speed)
         : brand(_brand), model(_model), year(_year), color(_color), speed(_speed) {}
 
-    
-    ~Car() {
+    const string& getBrand() const {
+        return brand;
+    }
+
+    const string& getModel() const {
+        return model;
+    }
+
+    const string& getYear() const {
+        return year;
+    }
+
+    const string& getColor() const {
+        return color;
+    }
+
+    const string& getSpeed() const {
+        return speed;
+    }
+
+    Car() {
         cout << "Car object destroyed\n";
     }
 };
@@ -42,11 +61,11 @@ public:
 
         cout << "\nList of Cars:\n";
         for (const auto& car : cars) {
-            cout << "Brand: " << car.brand << endl;
-            cout << "Model: " << car.model << endl;
-            cout << "Year: " << car.year << endl;
-            cout << "Color: " << car.color << endl;
-            cout << "Speed: " << car.speed << endl;
+            cout << "Brand: " << car.getBrand() << endl;
+            cout << "Model: " << car.getModel() << endl;
+            cout << "Year: " << car.getYear() << endl;
+            cout << "Color: " << car.getColor() << endl;
+            cout << "Speed: " << car.getSpeed() << endl;
             cout << endl;
         }
     }
@@ -54,9 +73,6 @@ public:
 
 int main() {
     CarManager carManager;
-
-    
-    Car car2;
 
     string car1_brand, car1_model, car1_year, car1_color, car1_speed;
 
@@ -71,11 +87,9 @@ int main() {
     cout << "Enter the speed of the car: ";
     cin >> car1_speed;
 
-    
     Car car1(car1_brand, car1_model, car1_year, car1_color, car1_speed);
 
     carManager.addCar(car1);
-    carManager.addCar(car2);  
 
     carManager.displayCars();
 
